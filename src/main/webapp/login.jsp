@@ -28,7 +28,7 @@
                             <h3 class="text-center py-3">Login</h3>
                         </div>
                         <div class="card-body">
-                            <form action="homepage.jsp" method="post">
+                            <form action="checkLogin.jsp" method="post">
                                 <input type="text" name="username" placeholder="Username" class="form-control mb-3">
                                 <input type="password" name="password" placeholder="Password" class="form-control mb-3">
                                 <button class="btn btn-success mt-2" style="position: relative; left: 38%" name="login">Login</button>
