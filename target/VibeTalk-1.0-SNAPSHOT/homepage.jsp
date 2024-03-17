@@ -10,25 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta type="text/html" charset="UTF-8">
     <style>
-        body{
-            margin: 0px;
-            font-family: Arial, Helvetica, sans-serif;
-            height: 100%;
-            width: 100%;
-        }
-        ul{
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            background-color: #f1f1f1;
-            position: fixed;
-            height: 100%;
-            overflow: auto;
-        }
-        a{
-            text-decoration: none;
-        }
+        
     </style>
 </head>
 
@@ -44,22 +26,38 @@
             loggedIn = true;
         }
     %>
-    <div class="navbar">
-        <div class="navbar fixed-top navbar-dark" style="background-color:#242526; height:9%">
-            <div class="logo-VibeTalk form-inline">
-                <a class="navbar-brand" href="homepage.jsp" style="margin-bottom:2.7%">
-                    <img src="logo.jpg" width="30" height="30" class="d-inline-block align-top" alt="logo" loading="lazy">
-                    VibeTalk
-                </a>
-                <form class="form-inline" style="margin-top:0.2%">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchText">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
+    <nav>
+        <div class="navbar fixed-top navbar-dark" style="background-color:#242526; height:10%">
+            <table style="margin-left: 0; width: 100%">
+                <tr>
+                    <td style="width: 43%">
+                        <div class="form-inline" style="padding-bottom: 0px; margin-top: 4px;">
+                            <a class="navbar-brand" href="homepage.jsp" style="margin-bottom:2.0%">
+                                <img src="logo.jpg" width="30" height="30" class="d-inline-block align-top" alt="logo" loading="lazy">
+                                VibeTalk
+                            </a>
 
-            <div id="login" style="margin-bottom:0.9%;">
-            </div>
+                            <form class="form-inline" style="margin-top:0.2%; padding: 0; margin-right: 0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchText">
+                                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </td>
+                    
+                    <td style="width: 40%">
+                        <a class="btn btn-outline-light" onclick="postTab()" style="border: 0">Post</a>
+                        <a class="btn btn-outline-light" onclick="videoTab()"style="border: 0">Video</a>
+                        <a class="btn btn-outline-light" onclick="musicTab()" style="border: 0">Music</a>
+                    </td>
+                    
+                    <td style = "display: inline-flex; width: auto">
+                        <div id="login" style="margin-top:3.7%">  </div>
+                    </td>
 
+                </tr>
+            </table>
+
+            
             <script>
                 var loggedIn = "<%=loggedIn%>";
                 var username =  "<%=username%>";
@@ -74,8 +72,9 @@
                 }
             </script>
         </div>
-    </div>
-    <div class="" style="margin-top: 3.3%">
+    </nav>
+
+    <div class="tab-content" style="margin-top: 4.7%">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-3" style="padding-left: 0px; padding-right: 0px; background-color: #18191a">
@@ -89,77 +88,40 @@
                         <a class="nav-link" href="bookmark.jsp">
                             <button type="button" class="btn btn-outline-light" style="width: 100%; text-align: left">Bookmark</button>
                         </a>
+                        
                     </nav>
                 </div>
-                <div class="col-6 middlePanel" >
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="card" style="margin-top: 10px; margin-bottom: 10px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Author</h5>
-                                        <img src="logo.jpg" class="card-img-top" alt="...">
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <form action="post.jsp">
-                                            <button type="submit" class="btn btn-primary">Go somewhere</button>
-                                            <input type="textarea" name="comment" id="comment" placeholder="Comment">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+            
+            <div class="col-6" id="midPanel">
+                <iframe src="post_tab.jsp" id="switchTab" style="width:100%; height: 3000px; border: none"> </iframe>
+                <script>
+                    function postTab(){
+                        document.getElementById("switchTab").src = "post_tab.jsp";
+                        // document.getElementById("nav-post-tab").classList.add("active");
+                        // document.getElementById("nav-video-tab").classList.remove("active");
+                        // document.getElementById("nav-music-tab").classList.remove("active");
+                    }
+                    function videoTab(){
+                        document.getElementById("switchTab").src = "video_tab.jsp";
+                        // document.getElementById("nav-video-tab").classList.add("active");
+                        // document.getElementById("nav-post-tab").classList.remove("active");
+                        // document.getElementById("nav-music-tab").classList.remove("active");
+                    }
+                    function musicTab(){
+                        document.getElementById("switchTab").src = "music_tab.jsp";
+                        // document.getElementById("nav-music-tab").classList.add("active");
+                        // document.getElementById("nav-video-tab").classList.remove("active");
+                        // document.getElementById("nav-post-tab").classList.remove("active");
+                    }
+                </script>
+            </div>
 
-                            <div class="col-8">
-                                <div class="card" style="margin-top: 10px; margin-bottom: 10px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Author</h5>
-                                        <img src="logo.jpg" class="card-img-top" alt="...">
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <form action="post.jsp">
-                                            <button type="submit" class="btn btn-primary">Go somewhere</button>
-                                            <input type="textarea" name="comment" id="comment" placeholder="Comment">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-8">
-                                <div class="card" style="margin-top: 10px; margin-bottom: 10px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Author</h5>
-                                        <img src="logo.jpg" class="card-img-top" alt="...">
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <form action="post.jsp">
-                                            <button type="submit" class="btn btn-primary">Go somewhere</button>
-                                            <input type="textarea" name="comment" id="comment" placeholder="Comment">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-8">
-                                <div class="card" style="margin-top: 10px; margin-bottom: 10px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Author</h5>
-                                        <img src="logo.jpg" class="card-img-top" alt="...">
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <form action="post.jsp">
-                                            <button type="submit" class="btn btn-primary">Go somewhere</button>
-                                            <input type="textarea" name="comment" id="comment" placeholder="Comment">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-auto" style="margin-left: 0px; padding-left: 0px">
-                    <nav class="nav flex-column rightPanel">
-                        <a class="nav-link" href="#">Active</a>
-                        <a class="nav-link" href="#">Link</a>
-                        <a class="nav-link" href="#">Link</a>
-                    </nav>
-                </div>
+            <div class="col-auto">
+                <nav class="nav flex-column" style="position: fixed">
+                    <a class="nav-link" href="#">Active</a>
+                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#">Link</a>
+                </nav>
             </div>
         </div>
     </div>
