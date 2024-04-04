@@ -45,9 +45,9 @@
                     </td>
                     
                     <td style="width: 40%">
-                        <a class="btn btn-outline-light" onclick="postTab()" style="border: 0">Post</a>
-                        <a class="btn btn-outline-light" onclick="videoTab()"style="border: 0">Video</a>
-                        <a class="btn btn-outline-light" onclick="musicTab()" style="border: 0">Music</a>
+                        <a class="btn btn-outline-light" href="#post" onclick="postTab()" style="border: 0">Post</a>
+                        <a class="btn btn-outline-light" href="#video" onclick="videoTab()"style="border: 0">Video</a>
+                        <a class="btn btn-outline-light" href="#music" onclick="musicTab()" style="border: 0">Music</a>
                     </td>
                     
                     <td style = "display: inline-flex; width: auto">
@@ -79,49 +79,53 @@
             <div class="row">
                 <div class="col-3" style="padding-left: 0px; padding-right: 0px; background-color: #18191a">
                     <nav class="nav flex-column leftPanel">
-                        <a class="nav-link" href="userInfo.jsp">
-                            <button type="button" class="btn btn-outline-light" style="width: 100%; text-align: left">Username</button>
+                        <a class="nav-link" href="listFriend.jsp">
+                            <button type="button" class="btn btn-outline-light" style="width: 100%; text-align: left">Friends</button>
                         </a>
-                        <a class="nav-link" href="saved.jsp">
-                            <button type="button" class="btn btn-outline-light" style="width: 100%; text-align: left">Saved</button>
+                        <a class="nav-link" href="personalVideo.jsp">
+                            <button type="button" class="btn btn-outline-light" style="width: 100%; text-align: left">Your video</button>
                         </a>
                         <a class="nav-link" href="bookmark.jsp">
                             <button type="button" class="btn btn-outline-light" style="width: 100%; text-align: left">Bookmark</button>
                         </a>
-                        
+                        <a class="nav-link" href="Group.jsp">
+                            <button type="button" class="btn btn-outline-light" style="width: 100%; text-align: left">Groups</button>
+                        </a>
+                        <hr style="border: 1px solid #2c2d2e; width: 90%">
+                        <h4 style="text-align: center; font-size: large; color: #f3f5f6">Recommendation</h4>
+                        <iframe src="recommendation.jsp" style="border-radius:12px; margin-left: 2%" width="96%" height="39%" frameBorder="0" loading="eager"></iframe>
                     </nav>
                 </div>
             
-            <div class="col-6" id="midPanel">
-                <iframe src="post_tab.jsp" id="switchTab" style="width:100%; height: 3000px; border: none"> </iframe>
-                <script>
-                    function postTab(){
-                        document.getElementById("switchTab").src = "post_tab.jsp";
-                        // document.getElementById("nav-post-tab").classList.add("active");
-                        // document.getElementById("nav-video-tab").classList.remove("active");
-                        // document.getElementById("nav-music-tab").classList.remove("active");
-                    }
-                    function videoTab(){
-                        document.getElementById("switchTab").src = "video_tab.jsp";
-                        // document.getElementById("nav-video-tab").classList.add("active");
-                        // document.getElementById("nav-post-tab").classList.remove("active");
-                        // document.getElementById("nav-music-tab").classList.remove("active");
-                    }
-                    function musicTab(){
-                        document.getElementById("switchTab").src = "music_tab.jsp";
-                        // document.getElementById("nav-music-tab").classList.add("active");
-                        // document.getElementById("nav-video-tab").classList.remove("active");
-                        // document.getElementById("nav-post-tab").classList.remove("active");
-                    }
-                </script>
-            </div>
+                <div class="col-6">
+                    <iframe src="post_tab.jsp" id="switchTab" style="width:100%; height: 2000px; border: none"> </iframe>
+                    <script>
+                        function postTab(){
+                            document.getElementById("switchTab").src = "post_tab.jsp";
+                        }
+                        function videoTab(){
+                            document.getElementById("switchTab").src = "video_tab.jsp";
+                        }
+                        function musicTab(){
+                            document.getElementById("switchTab").src = "music_tab.jsp";
+                        }
+                    </script>
+                </div>
 
-            <div class="col-auto">
-                <nav class="nav flex-column" style="position: fixed">
-                    <a class="nav-link" href="#">Active</a>
-                    <a class="nav-link" href="#">Link</a>
-                    <a class="nav-link" href="#">Link</a>
-                </nav>
+                <div class="col-auto" style="padding: 0; position: relative; width: auto;">
+                    <nav class="nav flex-column rightPanel">
+                        <table>
+                            <tr>
+                                <div class="playlist" style="margin-top: 10px">
+                                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/6eUKZXaKkcviH0Ku9w2n3V?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                                </div>
+                            </tr>
+                            <tr style="margin-top: 10px">
+                                <iframe src="listFriend.jsp" style="border-radius:12px" width="100%" height="35%" frameBorder="0" loading="eager"></iframe>
+                            </tr>
+                        </table>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
