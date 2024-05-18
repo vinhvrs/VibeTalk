@@ -14,7 +14,15 @@
 
 .card-img-top{
     width: 50%;
-    height: 50%;
+    height: 100%;
+    margin-left: 25%;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.container > .row > .col-8 > .card > .card-body > .card-title > iframe{
+    width: 50%;
+    height: 100%;
     margin-left: 25%;
     object-fit: cover;
     border-radius: 0;
