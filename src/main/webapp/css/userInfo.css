@@ -31,6 +31,15 @@ body {
     z-index: -1;
 }
 
+.grid-container > .wall > .user-info > #friendCheck{
+    border: 0; 
+    white-space: nowrap;
+    left: 50%;
+    position: absolute;
+    display: fixed;
+    margin-top: 20px;
+}
+
 .grid-container > .wall > .user-info > #avatar {
     vertical-align: middle;
     width: 200px;
@@ -46,12 +55,13 @@ body {
 }
 
 .grid-container > .wall > .user-info > .info {
-    position: relative;
+    position: absolute;
     display: inline-flex;
     margin-top: 20px;
-    margin-left: 25%;
+    left: 75%;
     size: 30px;
-    float: left;
+    float: right;
+    right: 0;
 }
 
 .grid-container > .personPost{

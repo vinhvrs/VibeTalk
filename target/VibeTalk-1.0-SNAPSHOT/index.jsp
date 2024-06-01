@@ -7,7 +7,7 @@
 </head>
 <body>
     <% 
-        response.sendRedirect("homepage.jsp");
+        response.sendRedirect("home.jsp");
     %>
 </body>
 </html>

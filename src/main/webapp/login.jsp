@@ -11,15 +11,8 @@
         <%
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            Cookie[] Cookies = request.getCookies();
-            if (Cookies != null){
-                for (Cookie cookie : Cookies){
-                    if (cookie.getName().equals("username")){
-                        session.setAttribute("username", cookie.getValue());
-                        response.sendRedirect("home.jsp");
-                    }
-                }
-            }
+            String userID = "";
+           
             if (username != null && password != null)
             try{
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -27,10 +20,10 @@
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery("SELECT * FROM userInfo WHERE username = '"+ username +"'AND password = '"+ password +"';");
                 if (rs.next()){
-                    //if (rs.getString(1).equals(username) && rs.getString(2).equals(password)){
                         session.setAttribute("username", username);
-                        Cookie loginCookie = new Cookie("username", username);
-                        response.sendRedirect("home.jsp");
+                        userID = rs.getString("userID");
+                        session.setAttribute("userID", userID);
+                        response.sendRedirect("home.jsp#post");
                     } else { %>
                         <script>alert("Invalid username or password")</script>
                     <%
@@ -40,7 +33,12 @@
             catch(Exception e){
             }
         %>
-        
+        <script>
+            function login(){
+                var userID = '${userID}';
+                console.log(userID);
+            }
+        </script>
     </head>
 
     <body>
@@ -67,9 +65,8 @@
                             <form action="" method="post">
                                 <input type="text" name="username" placeholder="Username" class="form-control mb-3">
                                 <input type="password" name="password" placeholder="Password" class="form-control mb-3">
-                                <button class="btn btn-success mt-2" style="position: relative; left: 38%" name="login" onclick="login()">Login</button>
+                                <button class="btn btn-success mt-2" style="position: relative; left: 38%" name="login" >Login</button>
                                 <p class="text-center mt-3">Don't have an account? <a style="text-decoration: none" href="register.jsp">Register</a></p>
-                                </div>
                             </form>
                         </div>
                     </div>

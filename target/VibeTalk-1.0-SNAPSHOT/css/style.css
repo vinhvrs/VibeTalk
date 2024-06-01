@@ -8,76 +8,6 @@ body{
     max-width: 200%;
 }
 
-.nav-top{
-    display: grid;
-    position: fixed;
-    width: 100%;
-    background-color: #242526;
-    grid-template-columns: 35% 40% 25%;
-    grid-template-rows: 100%;
-}
-
-.nav-top > .left-nav{
-    align-content: center;    
-    height: 100%;
-    display: flex;
-}
-
-.nav-top > .left-nav > a {
-    margin-left: 5%;
-    width: 100px;
-    display: inline;
-    align-content: center;
-}
-
-.nav-top > .left-nav > a > p{
-    font-size: 20px;
-    margin: 0;
-    margin-left: 3%;
-}
-
-.nav-top > .left-nav > .nav-brand{
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-}
-
-.nav-top > .left-nav > form{
-    margin: 0;
-    margin-left: 2%;
-    align-self: center;
-    display: inline;
-    padding: 13px;
-}
-
-.nav-top > .center-nav{
-    align-content: center;
-    margin-left: 15%;
-}
-
-.nav-top > .right-nav{
-    align-items: center;
-    display: flex;
-}
-
-.nav-top > .right-nav > #login{
-    display: flex;
-    align-items: center;
-    margin: 0;
-    margin-left: 25%;
-}
-
-.nav-top > .right-nav > #login > a{
-    text-decoration: none;
-    color: white;
-    margin-left: 10%;
-}
-
-.nav-top > .right-nav > #login > a#button{
-    margin-left: 40%;
-}
-
 .wrapper{
     display: grid;
     background-color: #18191a;
@@ -86,7 +16,6 @@ body{
 }
 
 .nav-side{
-    margin-top: 5%;
     height: 100%;
     width: 20%;
     display: block;

@@ -19,7 +19,7 @@
         if(username != null && password != null)
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=UserDB; encrypt=true; trustServerCertificate=true; username=sa; password=nguyentritue;");
+            Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=WebDev; encrypt=true; trustServerCertificate=true; username=sa; password=nguyentritue;");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM userInfo WHERE account = '"+username+"';");
             if (rs.next()){
@@ -29,7 +29,7 @@
             }
             else{
                 stmt.executeUpdate("INSERT INTO userInfo VALUES('"+username+"', '"+password+"', '"+email+"', '"+phone+"')");
-                response.sendRedirect("homepage.jsp");
+                response.sendRedirect("home.jsp");
             }
             
             con.close();
@@ -50,7 +50,6 @@
                 </ul>
             </div>
         </div>
-
 
         <div class="container">
             <div class="row-3">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>VibeTalk</title>
+    <title>Change Password</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -11,9 +11,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="JavaScript/userInfo.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta type="text/html" charset="UTF-8">
+    <%@ page import="java.sql.*" %>
+
+</head>
     <% 
         String username;
         String userID = (String) session.getAttribute("userID");
@@ -32,14 +36,40 @@
                 loggedIn = true;
             }
         }
-    %>
-    <script src="JavaScript/homepage.js"></script> 
-    <script>
-        var userID = '${userID}';
-        function resizeIframe(obj) {
-            obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+
+        String oldPassword = request.getParameter("oldPassword");
+        String newPassword = request.getParameter("newPassword");
+        String confirmNewPassword = request.getParameter("confirmNewPassword");
+        String password = "";
+
+        if (oldPassword != null && newPassword != null && confirmNewPassword != null)
+        try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            try (Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=WebDev; encrypt=true; trustServerCertificate=true; username=sa; password=nguyentritue;")) {
+                try (Statement stmt = con.createStatement()){
+                    ResultSet rs = stmt.executeQuery("SELECT password FROM userInfo WHERE username = '" + username + "';");
+                    if (rs.next()){
+                        password = rs.getString("password");
+
+                        if (password.equals(oldPassword)) {
+                            if (newPassword.equals(confirmNewPassword)) {
+                                stmt.executeUpdate("UPDATE userInfo SET password = '"+newPassword+"' WHERE username = '"+username+"';");
+                                out.println("<script>alert('Password updated successfully')</script>");
+                                response.sendRedirect("userInfo.jsp?userID="+userID);
+                            } else {
+                                out.println("<script>alert('New password and confirm new password do not match')</script>");
+                            }
+                        } else {
+                            out.println("<script>alert('Old password is incorrect')</script>");
+                        }
+                    }
+                }
+            }
         }
-    </script>
+        catch(Exception e){
+        }
+    %>
+
     <style>
         a {
         text-decoration: none;
@@ -51,8 +81,6 @@
         content: none;
         }
     </style>
-</head>
-
 <body>
     <nav class="navbar bg-dark fixed-top">
         <div class="navbar-brand d-inline text-white">
@@ -71,9 +99,9 @@
         <div class="space"></div>
 
         <div class="navbar d-inline text-white" id="tab-content">
-            <a class="btn btn-outline-light" href="#post" onclick="postTab()" style="border: 0">Post</a>
-            <a class="btn btn-outline-light" href="#video" onclick="videoTab()" style="border: 0">Video</a>
-            <a class="btn btn-outline-light" href="#music" onclick="musicTab()" style="border: 0">Music</a>
+            <a class="btn btn-outline-light" href="home.jsp#post" style="border: 0">Post</a>
+            <a class="btn btn-outline-light" href="home.jsp#video" style="border: 0">Video</a>
+            <a class="btn btn-outline-light" href="home.jsp#music" style="border: 0">Music</a>
         </div>
 
         <div class="space"></div>
@@ -114,6 +142,7 @@
         <script>
             var loggedIn = "<%=loggedIn%>";
             var username = "<%=username%>";
+            var userID = "<%=userID%>";
             const space = "<div class='space d-inline'></div>";
             const image = "<img src='imgs/avatar.jpg' alt='avatar' style='width: 40px; height: 40px; border-radius: 50%; margin-left: 30px; margin-right: 10px'>";
             const loginHTML = "<a class='nav-brand d-inline mr-4' href=''>Guest</a>" + space
@@ -136,98 +165,30 @@
         </script>
     </nav>
 
-    <div class="wrapper" id = "wrapper-content">
-        <div class="nav-side">
-            <div class="flex-column">
-                <a class="nav-link" href="http://localhost:8080/VibeTalk/userInfo.jsp?userID=<%=userID%>#friends">
-                    <button type="button" class="btn btn-outline-light" style="width: 100%; text-align: left">Friends</button>
-                </a>
-                <a class="nav-link" href="userInfo.jsp?userID=<%=userID%>#videos">
-                    <button type="button" class="btn btn-outline-light" style="width: 100%; text-align: left">Your video</button>
-                </a>
-                <a class="nav-link" href="bookmark.jsp">
-                    <button type="button" class="btn btn-outline-light" style="width: 100%; text-align: left">Bookmark</button>
-                </a>
-                <a class="nav-link" href="Group.jsp">
-                    <button type="button" class="btn btn-outline-light" style="width: 100%; text-align: left">Groups</button>
-                </a>
-                <hr style="border: 1px solid #2c2d2e; width: 90%">
-                <h4 style="text-align: center; font-size: large; color: #f3f5f6">Recommendation</h4>
-                <iframe src="recommendation.jsp" style="border-radius:12px; margin-left: 2%" width="96%" height="39%" frameBorder="0" loading="eager"></iframe>
+    <div class="container mt-5">
+        <form id="changePasswordForm" action="" method="POST">
+            <div class="form-group">
+                <label for="oldPassword">Old password</label>
+                <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
             </div>
-        </div>    
-
-        <div class="post-content" id ="content">
-            <iframe src="post_tab.jsp" id="switchTab" width="100%" onload="resizeIframe(this)" scrolling="no" style="border: none"></iframe>
-        </div>
-        <div class="music-chat" id ="music-chat">
-            <button id ="Music-Expand" onclick = "Resize()"></button>
-            <iframe id ="music-frame" height="80px" width="300px" src="https://open.spotify.com/embed/artist/6eUKZXaKkcviH0Ku9w2n3V?utm_source=generator" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy"></iframe>
-            <%-- <iframe id ="chat-frame" class="chat-frame" width="300px" src="listFriend.jsp" frameBorder="0" loading="eager"></iframe> --%>
-            <div id="chat-frame" class="chat-frame">
-                <%@ page import="java.sql.*" %>
-                <%
-                    String Friends[] = new String[100];
-                    if (username != null)
-                    try{
-                        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                        Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=WebDev; encrypt=true; trustServerCertificate=true; username=sa; password=nguyentritue;");
-                        Statement stmt = con.createStatement();
-                        ResultSet rs = stmt.executeQuery("SELECT username FROM userInfo LEFT JOIN Friends ON userInfo.userID = Friends.friendID WHERE Friends.userID = (SELECT userID FROM userInfo WHERE userInfo.username = '"+username+"');");
-                        int j = 0;
-                        while (rs.next()){
-                            Friends[j] = rs.getString("username");
-                            session.setAttribute("friend", Friends[j]);
-                            j++;
-                        }  
-                        rs = stmt.executeQuery("SELECT username FROM userInfo LEFT JOIN Friends ON userInfo.userID = Friends.userID WHERE Friends.friendID = (SELECT userID FROM userInfo WHERE userInfo.username = '"+username+"');");
-                        while (rs.next()){
-                            Friends[j] = rs.getString("username");
-                            session.setAttribute("friend", Friends[j]);
-                            j++;
-                        }
-                         
-                        con.close();
-                        %>
-                        <table>
-                            <% 
-                                for (int i = 0; i < j; i++){ 
-                            %>
-                            <tr>
-                                <a class="btn btn-outline-dark" onclick="var friendName = '<%= Friends[i] %>'; chatBox(friendName);" style="border: 0; color: #f3f5f6; width: 100%"><%= Friends[i] %></a>
-                            </tr>
-                            <% } %>
-                        </table>
-                        <%
-                    }
-                    catch(Exception e){
-                    }
-                %>
+            <div class="form-group">
+                <label for="newPassword">New password</label>
+                <input type="password" class="form-control" id="newPassword" name="newPassword" required>
             </div>
-        </div>
-    <script>
-        if (window.location.hash == "#video") {
-            document.getElementById("switchTab").src = "video_tab.jsp";
-            currentTab = "video_tab.jsp";
-        }
-        if (window.location.hash == "#music") {
-            document.getElementById("switchTab").src = "music_tab.jsp";
-            currentTab = "music_tab.jsp";
-        }
-        window.onscroll = function () {
-            var position = window.scrollY + window.innerHeight;
-            var maxHeight = window.document.body.scrollHeight - 20;
-            if (position >= maxHeight) {
-                LoadMore();
-            }
-        };
-        if (window.location.href.includes("searchText")){
-            document.getElementById("switchTab").src = "search.jsp";
-            currentTab = "search.jsp";
-        }
-    </script>
-
+            <div class="form-group">
+                <label for="confirmNewPassword">Confirm new password</label>
+                <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" required>
+            </div>
+            <button class="btn btn-primary">Update password</button>
+            <button type="button" class="btn btn-secondary">I forgot my password</button>
+        </form>
     </div>
+    <script>
+        var topDistancce = document.getElementsByClassName("navbar")[0].offsetHeight;
+        document.body.style.paddingTop = topDistancce + 20 + "px";
+    </script>
+    
+    
+
 </body>
-<script> Normalize(); </script>
 </html>

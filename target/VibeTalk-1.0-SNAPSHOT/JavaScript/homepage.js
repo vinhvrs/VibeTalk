@@ -30,7 +30,6 @@ function Resize() {
 }
 
 function closeIframe() {
-    console.log("Close");
     if (boxchat != null) {
         boxchat.remove();
     }
@@ -74,7 +73,6 @@ function ChatFrame(Friend) {
 }
 
 function ChatHandler() {
-    console.log("FUCK ME UP");
     document.getElementById('messageForm').addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -106,9 +104,11 @@ function ChatHandler() {
 } 
                             
 function Normalize() {
-    var navHeight = document.getElementById("nav-top").clientHeight;
+    var navHeight = document.getElementsByClassName("navbar")[0].clientHeight;
+    document.getElementsByClassName("nav-side")[0].style.top = navHeight + "px";
     document.getElementById("music-chat").style.top = navHeight + "px";
     document.getElementById("content").style.top = navHeight + "px";
+    document.getElementById("switchTab").style.height = navHeight + "px";
 }
 
 function setCenter(obj) {
@@ -127,14 +127,18 @@ function LoadMore() {
     var newContent = document.createElement("div");
     newContent.style.padding = "0";
     newContent.style.top = "0";
-    newContent.innerHTML = "<iframe src=\"" + currentTab + "\" id=\"switchTab\" width=\"100%\" onload=\"resizeIframe(this)\" scrolling=\"no\" style=\"border: none\"> </iframe>";
+    newContent.innerHTML = "<iframe src=\"" + currentTab + "\" id=\"switchTab\" width=\"100%\" onload=\"resizeIframe(this)\" scrolling=\"no\" style=\"border: none;\"> </iframe>";
     content.appendChild(newContent);
 }
 
-window.onscroll = function () {
-    var position = window.scrollY + window.innerHeight;
-    var maxHeight = window.document.body.scrollHeight;
-    if (position === maxHeight) {
-        LoadMore();
-    }
-};
+function userDetail(friendID){
+    var url = "userInfo.jsp?userID=" + friendID;
+    window.parent.location.href = url;
+}
+
+function Search(){
+    var searchText = document.getElementsByName("searchText")[0].value;
+    window.location.href = "home.jsp?searchText=" + searchText;
+    document.getElementById("switchTab").src = "search.jsp";
+    currentTab = "search.jsp";
+}
