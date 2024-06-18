@@ -16,14 +16,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta type="text/html" charset="UTF-8">
         <script src="JavaScript/userInfo.js"></script>
-        
         <script>
             function setCenter(obj){
                 obj.style.height = window.innerHeight/2 + "px";
                 obj.style.width = window.innerWidth/1.4 + "px";
                 obj.style.marginLeft = (window.innerWidth - obj.width) / 2 + "px";
             }
+            function resizeIframe(obj) {
+                obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+            }
         </script>
+
         <%@ page import="java.sql.*" %>
         <%@ page import="javax.servlet.jsp.JspContext" %>
         <%@ page import="javax.servlet.http.HttpServletRequest" %>
@@ -41,6 +44,7 @@
             boolean loggedIn = false;
 
             String guestID = hash;
+            session.setAttribute("guestID", guestID);
 
             if (session.getAttribute("username") == null){
                 username = "Guest";
@@ -70,6 +74,9 @@
             }
         %>
         <style>
+            body{
+                background-color: #17151a;
+            }
             a {
             text-decoration: none;
             }
@@ -167,9 +174,38 @@
                 <div class="user-info">
                     <img src="imgs/avatar.jpg" id="avatar" alt="avatar"> 
                     <p id="username"> <%=guestName%> </p>
-                    <div id="friendCheck">
-                        <button class="btn btn-outline-light" style="border: 0; display: inline">Add Friend</button>
-                    </div>
+                    <%
+                        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                        Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=WebDev; encrypt=true; trustServerCertificate=true; username=sa; password=nguyentritue;");
+                        Statement getFriend = con.createStatement();
+                        ResultSet friend = getFriend.executeQuery("SELECT * FROM Friends WHERE userID = '"+ guestID +"';");
+                        boolean friendCheck = false;
+                        while (friend.next()){
+                            String friendID = friend.getString("friendID");
+                            if (friendID.equals(userID)){
+                                friendCheck = true;
+                            }
+                        }
+                        if (!friendCheck){
+                            friend = getFriend.executeQuery("SELECT * FROM Friends WHERE friendID = '"+ guestID +"';");
+                            while (friend.next()){
+                                String friendID = friend.getString("userID");
+                                if (friendID.equals(userID)){
+                                    friendCheck = true;
+                                }
+                            }
+                        }
+                        if (friendCheck){
+                            out.println("<div id='friendCheck'>");
+                            out.println("<button class='btn btn-outline-light' style='border: 0; display: inline' >Friend</button>");
+                            out.println("</div>");
+                        } else {
+                            out.println("<div id='friendCheck'>");
+                            out.println("<button class='btn btn-outline-light' style='border: 0; display: inline' >Add Friend</button>");
+                            out.println("</div>");    
+                        }
+                        con.close();
+                    %>
                     <script>
                         var guestID = "<%=guestID%>";
                         guestID = parseInt(guestID);
@@ -189,7 +225,7 @@
                 </div>
             </div>
             <div class="personalPost">
-                <iframe id="userContent" src="personalPost.jsp" frameborder="0" scrolling="no"></iframe>
+                <iframe id="userContent" src="personalPost.jsp" frameborder="0" scrolling="no" onload="resizeIframe(this);"></iframe>
             </div>
         </div>
         <script>

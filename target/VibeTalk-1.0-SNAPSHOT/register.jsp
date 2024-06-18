@@ -38,55 +38,81 @@
         }
     %>
 
+    <style>
+
+        #registerForm{
+            padding: 0;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
 </head>
 <body>
-    <div class="navbar navbar-expand-lg border-bottom bg-white sticky-top shadow-sm justify-content-between navbar-light">
-            <div class="container">
-                <a href="homepage.jsp" class="navbar-brand text-dark">VibeTalk</a>
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a href="homepage.jsp" class="nav-link text-dark">Home</a></li>
-                    <li class="nav-item"><a href="login.jsp" class="nav-link text-dark">Login</a></li>
-                    <li class="nav-item"><a href="register.jsp" class="nav-link text-dark">Register</a></li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-expand-lg bg-dark fixed-top shadow-sm justify-content-between">
+        <div class="navbar-brand d-inline text-white">
+            <a class="nav-brand text-white" href="home.jsp">
+                <img src="logo.jpg" width="30" height="30" class="d-inline-block align-top ml-2" alt="logo">
+                <p class="d-inline mt-3">VibeTalk</p>
+            </a>
         </div>
 
-        <div class="container">
-            <div class="row-3">
-                <div class="col-lg-4 m-auto">
-                    <div class="card bg-white mt-5">
-                        <div class="card-title bg-primary text-white mt-3">
-                            <h3 class="text-center py-3">Register</h3>
-                        </div>
-                        <div class="card-body">
-                            <form action="" method="post">
-                                <table>
-                                    <tr>
-                                        <td> Username </td>
-                                        <td> <input type="text" name="username" placeholder="Username" class="form-control mb-3"> </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Password </td>
-                                        <td> <input type="password" name="password" placeholder="Password" class="form-control mb-3"> </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Email </td>
-                                        <td> <input type="email" name="email" placeholder="Email" class="form-control mb-3"> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="display: inline"> Phone Number </td>
-                                        <td> <input type="text" name="phone" placeholder="Phone Number" class="form-control mb-3"> </td>
-                                    </tr>
-                                </table>
-                                <button class="btn btn-success mt-2" style="position: relative; margin-left: 36%" name="register" >Register</button>
+        <div class="space"></div>
+        <div class="space"></div>
+        <div class="space"></div>
+        <div class="space"></div>
+        <div class="space"></div>
+        <div class="space"></div>
+        <div class="space"></div>
+        <div class="space"></div>
+        <div class="space"></div>
+        <div class="space"></div>
+        <div class="space"></div>
 
-                                </div>
-                            </form>
-                        </div>
+        <div class="navbar d-inline text-white bg-dark" id="tab-content">
+            <a class="btn btn-outline-light" href="home.jsp" style="border: 0">Home</a>
+            <a class="btn btn-outline-light" href="login.jsp" style="border: 0">Login</a>
+            <a class="btn btn-outline-light" href="register.jsp" style="border: 0">Register</a>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top: 8%;">
+        <div class="row-3">
+            <div class="col-lg-4 m-auto">
+                <div class="card bg-white mt-5" id="registerForm">
+                    <div class="card-title bg-primary text-white mt-3">
+                        <h3 class="text-center py-3">Register</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="post">
+                            <table>
+                                <tr>
+                                    <td> Username </td>
+                                    <td> <input type="text" name="username" placeholder="Username" class="form-control mb-3"> </td>
+                                </tr>
+                                <tr>
+                                    <td> Password </td>
+                                    <td> <input type="password" name="password" placeholder="Password" class="form-control mb-3"> </td>
+                                </tr>
+                                <tr>
+                                    <td> Email </td>
+                                    <td> <input type="email" name="email" placeholder="Email" class="form-control mb-3"> </td>
+                                </tr>
+                                <tr>
+                                    <td style="display: inline"> Phone Number </td>
+                                    <td> <input type="text" name="phone" placeholder="Phone Number" class="form-control mb-3"> </td>
+                                </tr>
+                            </table>
+                            <button class="btn btn-success mt-2" style="position: relative; margin-left: 36%" name="register" >Register</button>
+
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
                     
 </body>
 </html>

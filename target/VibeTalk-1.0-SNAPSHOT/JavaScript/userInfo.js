@@ -33,6 +33,8 @@ function Normalize() {
     document.getElementsByClassName("personalPost")[0].style.marginTop = contentPosition + "px";
 }
 
+
+
 function userDetail(friendID){
     var url = "userInfo.jsp?userID=" + friendID;
     console.log(url);
@@ -43,4 +45,8 @@ function Infomation(){
     var url = window.location.href;
     var userID = url.split("?")[1].split("=")[1];
     console.log(userID);
+}
+
+function checkFriend(){
+    
 }

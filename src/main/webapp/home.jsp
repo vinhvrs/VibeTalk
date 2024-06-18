@@ -34,6 +34,8 @@
         }
     %>
     <script src="JavaScript/homepage.js"></script> 
+
+
     <script>
         var userID = '${userID}';
         function resizeIframe(obj) {
@@ -156,14 +158,30 @@
                 <iframe src="recommendation.jsp" style="border-radius:12px; margin-left: 2%" width="96%" height="39%" frameBorder="0" loading="eager"></iframe>
             </div>
         </div>    
+        
+        <script>
+            if (loggedIn === "false") {
+                document.getElementsByClassName("nav-side")[0].style.display = "none";
+            }
+        </script>
 
         <div class="post-content" id ="content">
-            <iframe src="post_tab.jsp" id="switchTab" width="100%" onload="resizeIframe(this)" scrolling="no" style="border: none"></iframe>
+            <%
+                int Posted = 0;
+                if (session.getAttribute("Posted") != null){
+                    Posted = Integer.parseInt(session.getAttribute("Posted").toString());
+                }
+                session.setAttribute("Posted", Posted);
+            %>
+            <iframe src="post_tab.jsp" id="switchTab" width="100%" onload="resizeIframe(this)" scrolling="no" style="border: none; bottom-margin: 0"></iframe>
         </div>
         <div class="music-chat" id ="music-chat">
+            <form id="Spotify">
+                <input type="text" id="spotifyUrl" name="spotify" placeholder="Spotify Playlist Link" style="width: 70%; height: 30px; border-radius: 5px; margin-top: 10px">
+                <input type="submit" value="Get" style="width: 20%; height: 30px; border-radius: 5px; margin-top: 10px" onclick="getSpotify();">
+            </form>
             <button id ="Music-Expand" onclick = "Resize()"></button>
-            <iframe id ="music-frame" height="80px" width="300px" src="https://open.spotify.com/embed/artist/6eUKZXaKkcviH0Ku9w2n3V?utm_source=generator" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy"></iframe>
-            <%-- <iframe id ="chat-frame" class="chat-frame" width="300px" src="listFriend.jsp" frameBorder="0" loading="eager"></iframe> --%>
+            <iframe id ="music-frame" height="80px" width="300px" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy"></iframe>
             <div id="chat-frame" class="chat-frame">
                 <%@ page import="java.sql.*" %>
                 <%

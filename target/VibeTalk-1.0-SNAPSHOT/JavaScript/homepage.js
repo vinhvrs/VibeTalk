@@ -72,6 +72,15 @@ function ChatFrame(Friend) {
                         </table>`;
 }
 
+function loginHandler(){
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var url = "login.jsp?username=" + username + "&password=" + password;
+    window.parent.location.href = url;
+    console.log(username + " " + password);
+
+}
+
 function ChatHandler() {
     document.getElementById('messageForm').addEventListener('submit', function (event) {
         event.preventDefault();
@@ -116,13 +125,15 @@ function setCenter(obj) {
     var height = window.innerHeight;
     var objWidth = obj.clientWidth;
     var objHeight = obj.clientHeight;
-    alert(objWidth);
     obj.style.left = (width - objWidth) / 2 + "px";
     obj.style.top = (height - objHeight) / 2 + "px";
 
 }
 
 function LoadMore() {
+    if (currentTab === "post_tab.jsp") {
+        return;
+    }   
     var content = document.getElementById("content");
     var newContent = document.createElement("div");
     newContent.style.padding = "0";
@@ -141,4 +152,13 @@ function Search(){
     window.location.href = "home.jsp?searchText=" + searchText;
     document.getElementById("switchTab").src = "search.jsp";
     currentTab = "search.jsp";
+}
+
+function getSpotify(){
+    var url = document.getElementById("spotifyUrl").value;
+    var pos = url.indexOf(".com/");
+    var spotify = url.slice(0, pos + 5) + "embed/" + url.slice(pos + 5) + "?utm_source=generator";
+    document.getElementById("music-frame").src = spotify;   
+    window.location.href = window.location.href;
+    //alert(document.getElementById("music-frame").src);
 }

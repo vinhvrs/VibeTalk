@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>User</servlet-name>
+        <servlet-class>com.vibetalk.User</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MakeDecision</servlet-name>
+        <servlet-class>com.vibetalk.MakeDecision</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddFriendServlet</servlet-name>
+        <servlet-class>com.vibetalk.AddFriendServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>User</servlet-name>
+        <url-pattern>/User</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MakeDecision</servlet-name>
+        <url-pattern>/MakeDecision</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddFriendServlet</servlet-name>
+        <url-pattern>/AddFriendServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

@@ -4,7 +4,16 @@
         <meta type = "text/html" charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>Login page</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="css/login.css">
         <script src="JavaScript/CheckLogin.js"></script>
         <%@ page import="java.sql.*" %>
         
@@ -39,25 +48,54 @@
                 console.log(userID);
             }
         </script>
+
+        <style>
+        body{
+            <%-- background-color: #333031; --%>
+        }
+
+        #loginForm{
+            padding: 0;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        }
+        </style>
+
     </head>
 
     <body>
-        <div class="navbar navbar-expand-lg border-bottom bg-white sticky-top shadow-sm justify-content-between navbar-light">
-            <div class="container">
-                <a href="homepage.jsp" class="navbar-brand text-dark">VibeTalk</a>
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a href="homepage.jsp" class="nav-link text-dark">Home</a></li>
-                    <li class="nav-item"><a href="login.jsp" class="nav-link text-dark">Login</a></li>
-                    <li class="nav-item"><a href="register.jsp" class="nav-link text-dark">Register</a></li>
-                </ul>
+        <nav class="navbar navbar-expand-lg bg-dark fixed-top shadow-sm justify-content-between">
+            <div class="navbar-brand d-inline text-white">
+                <a class="nav-brand text-white" href="home.jsp">
+                    <img src="logo.jpg" width="30" height="30" class="d-inline-block align-top ml-2" alt="logo">
+                    <p class="d-inline mt-3">VibeTalk</p>
+                </a>
             </div>
-        </div>
 
+            <div class="space"></div>
+            <div class="space"></div>
+            <div class="space"></div>
+            <div class="space"></div>
+            <div class="space"></div>
+            <div class="space"></div>
+            <div class="space"></div>
+            <div class="space"></div>
+            <div class="space"></div>
+            <div class="space"></div>
+            <div class="space"></div>
 
-        <div class="container">
+            <div class="navbar d-inline text-white bg-dark" id="tab-content">
+                <a class="btn btn-outline-light" href="home.jsp" style="border: 0">Home</a>
+                <a class="btn btn-outline-light" href="login.jsp" style="border: 0">Login</a>
+                <a class="btn btn-outline-light" href="register.jsp" style="border: 0">Register</a>
+            </div>
+        </nav>
+
+        <div class="container" style="margin-top: 10%;">
             <div class="row-3">
                 <div class="col-lg-4 m-auto">
-                    <div class="card bg-white mt-5">
+                    <div class="card bg-white mt-5 rounded" id="loginForm">
                         <div class="card-title bg-primary text-white mt-3">
                             <h3 class="text-center py-3">Login</h3>
                         </div>
