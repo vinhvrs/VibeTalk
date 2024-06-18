@@ -89,13 +89,13 @@
     </style>
     </head>
     <body>
-        <nav class="navbar bg-dark fixed-top">
-            <div class="navbar-brand d-inline text-white">
-                <a class="nav-brand text-white" href="home.jsp">
-                    <img src="logo.jpg" width="30" height="30" class="d-inline-block align-top ml-2" alt="logo">
-                    <p class="d-inline mt-3">VibeTalk</p>
-                </a>
-            </div>
+        <nav class="navbar bg-dark fixed-top" style="padding-top: 0px;padding-bottom: 0px;padding-left: 0px;">
+        <div class="navbar-brand d-inline text-white">
+            <a class="nav-brand text-white" href="home.jsp">
+                <img src="logo.png" id="logo" width="70" height="70" class="d-inline-block align-top ml-1" alt="logo">
+                <p id="brandname" class="d-inline-block align-middle">VibeTalk</p>
+            </a>
+        </div>
 
             <form class="form-inline d-inline ml-1 mt-3 text-white" id="searchForm">
                 <input class="form-control mr-sm-2 d-inline" type="text" placeholder="Search" aria-label="Search" id="searchText"

@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap-grid.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="css/style.css">
     <%@ page import="java.sql.*" %>
-
     <% 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -50,11 +50,11 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-dark fixed-top shadow-sm justify-content-between">
+    <nav class="navbar bg-dark fixed-top" style="padding-top: 0px;padding-bottom: 0px;padding-left: 0px;">
         <div class="navbar-brand d-inline text-white">
             <a class="nav-brand text-white" href="home.jsp">
-                <img src="logo.jpg" width="30" height="30" class="d-inline-block align-top ml-2" alt="logo">
-                <p class="d-inline mt-3">VibeTalk</p>
+                <img src="logo.png" id="logo" width="70" height="70" class="d-inline-block align-top ml-1" alt="logo">
+                <p id="brandname" class="d-inline-block align-middle">VibeTalk</p>
             </a>
         </div>
 
@@ -88,19 +88,19 @@
                         <form action="" method="post">
                             <table>
                                 <tr>
-                                    <td> Username </td>
+                                    <td class="text-dark"> Username </td>
                                     <td> <input type="text" name="username" placeholder="Username" class="form-control mb-3"> </td>
                                 </tr>
                                 <tr>
-                                    <td> Password </td>
+                                    <td class="text-dark"> Password </td>
                                     <td> <input type="password" name="password" placeholder="Password" class="form-control mb-3"> </td>
                                 </tr>
                                 <tr>
-                                    <td> Email </td>
+                                    <td class="text-dark"> Email </td>
                                     <td> <input type="email" name="email" placeholder="Email" class="form-control mb-3"> </td>
                                 </tr>
                                 <tr>
-                                    <td style="display: inline"> Phone Number </td>
+                                    <td class="text-dark" style="display: inline"> Phone Number </td>
                                     <td> <input type="text" name="phone" placeholder="Phone Number" class="form-control mb-3"> </td>
                                 </tr>
                             </table>
