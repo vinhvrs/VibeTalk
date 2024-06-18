@@ -166,6 +166,15 @@
         </script>
 
         <div class="post-content" id ="content">
+            <form action="/submit-post" method="post" style="margin-top: 5%">
+                <div class="mb-3">
+                    <label for="comment" class="form-label"></label>
+                    <input type="hidden" name="userID" value="<%=userID%>">
+                    <textarea class="form-control" id="user_post" name="comment" rows="3" placeholder="How do you feel now?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+
             <%
                 int Posted = 0;
                 if (session.getAttribute("Posted") != null){

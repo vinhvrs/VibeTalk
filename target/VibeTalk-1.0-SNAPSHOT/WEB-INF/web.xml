@@ -12,6 +12,10 @@
         <servlet-name>AddFriendServlet</servlet-name>
         <servlet-class>com.vibetalk.AddFriendServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SubmitPost</servlet-name>
+        <servlet-class>com.vibetalk.SubmitPost</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>User</servlet-name>
         <url-pattern>/User</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>AddFriendServlet</servlet-name>
         <url-pattern>/AddFriendServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubmitPost</servlet-name>
+        <url-pattern>/SubmitPost</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
